@@ -1,1 +1,2 @@
-test
+iwr -useb https://raw.githubusercontent.com/Dhananjay-JSR/blockscript/main/script.ps1 |`
+    ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/dhananjay/script.ps1" -Force
