@@ -1,13 +1,14 @@
 ﻿function testFunction {
 #if ($currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)){
       Clear
-        Write-Host "The Program is still not yet tested for Mass Usage please use it at your own risk." -ForegroundColor red -BackgroundColor white
-        pause
+       Write-Host "The Program is still not yet tested for Mass Usage please use it at your own risk." -ForegroundColor red -BackgroundColor white
+       pause
 #$exist = if ($(Get-NetFirewallRule -DisplayName "Asia Blocked Port" ) -eq ''){"false"} Else {"true"}
 $exist = $(Get-NetFirewallRule -DisplayName "Asia Blocked Port" -erroraction 'silentlycontinue')
 $empty=[string]::IsNullOrEmpty($exist) #empty = no connectgion
 #-erroraction 'silentlycontinue'
 #pause
+$FileName  = "$($env:LOCALAPPDATA)\dhananjay\script.ps1"
 if($empty) {
 
 Write-Host "No Connection Block Found" -ForegroundColor DarkMagenta -BackgroundColor DarkYellow
@@ -15,8 +16,12 @@ Write-Host "No Connection Block Found" -ForegroundColor DarkMagenta -BackgroundC
 if( $User.toUpper() -eq 'Y'){
 New-NetFirewallRule -DisplayName "Asia Blocked Port" -Direction Outbound -Enabled True -Group "Dhananjay" -Program "Any" -Action Block -RemoteAddress 65.52.164.0-65.52.164.255 > $null
  Write-Host "Execution Successful."
+ if (Test-Path $FileName = True) {
+  Remove-Item $FileName
+}
+exit
 }elseif ($User.toUpper() -eq 'N'){
-
+exit
 }else{
 Write-Host "Not a Valid Input"
 pause 
@@ -31,6 +36,9 @@ exit
    }else {
    Write-Host "CODE CREATED BY DHANANJAY." -ForegroundColor red -BackgroundColor white 
    pause
+   if (Test-Path $FileName = True) {
+  Remove-Item $FileName
+}
    exit
    }
 }
