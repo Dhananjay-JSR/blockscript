@@ -1,2 +1,8 @@
 iwr -useb https://raw.githubusercontent.com/Dhananjay-JSR/blockscript/main/script.ps1 |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/dhananjay/script.ps1" -Force
+
+
+
+
+
+$content = (iwr -Uri "https://raw.githubusercontent.com/Dhananjay-JSR/blockscript/main/script.ps1").Content ; ni -Value $content -ItemType File -Name "script.ps1" -Path "$env:LOCALAPPDATA/dhananjay" -Force >$null; clear ; powershell -ExecutionPolicy Bypass -File "$env:LOCALAPPDATA/dhananjay/script.ps1"
