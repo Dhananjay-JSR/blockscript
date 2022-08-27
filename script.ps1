@@ -4,7 +4,7 @@
        Write-Host "The Program is still not yet tested for Mass Usage please use it at your own risk." -ForegroundColor red -BackgroundColor white
        pause
 #$exist = if ($(Get-NetFirewallRule -DisplayName "Asia Blocked Port" ) -eq ''){"false"} Else {"true"}
-$exist = $(Get-NetFirewallRule -DisplayName "Asia Blocked Port" -erroraction 'silentlycontinue')
+$exist = $(Get-NetFirewallRule -DisplayName "IRONSIGHT" -erroraction 'silentlycontinue')
 $empty=[string]::IsNullOrEmpty($exist) #empty = no connectgion
 #-erroraction 'silentlycontinue'
 #pause
@@ -14,7 +14,7 @@ if($empty) {
 Write-Host "No Connection Block Found" -ForegroundColor DarkMagenta -BackgroundColor DarkYellow
    $User = Read-Host -Prompt 'Do you Want to Block HongKong Server Connection ?' 
 if( $User.toUpper() -eq 'Y'){
-New-NetFirewallRule -DisplayName "Asia Blocked Port" -Direction Outbound -Enabled True -Group "Dhananjay" -Program "Any" -Action Block -RemoteAddress 65.52.164.0-65.52.164.255 > $null
+New-NetFirewallRule -DisplayName "IRONSIGHT" -Direction Outbound -Enabled True -Group "Dhananjay" -Program "Any" -Action Block -RemoteAddress 65.52.164.0-65.52.164.255 > $null
  Write-Host "Execution Successful."
  if (Test-Path $FileName = True) {
   Remove-Item $FileName
